@@ -17,16 +17,28 @@ export default function HomeLanding() {
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    const storedUser = localStorage.getItem('tp_user');
-    if (storedUser) {
-      const parsed = JSON.parse(storedUser) as { name?: string };
-      setIsLoggedIn(true);
-      setUserName(parsed?.name ?? 'Traveler');
-    }
-    const storedPlans = localStorage.getItem('tp_plans');
-    if (storedPlans) {
-      setPlans(JSON.parse(storedPlans) as Planning[]);
-    }
+    const refreshFromStorage = () => {
+      const storedUser = localStorage.getItem('tp_user');
+      if (storedUser) {
+        const parsed = JSON.parse(storedUser) as { name?: string };
+        setIsLoggedIn(true);
+        setUserName(parsed?.name ?? 'Traveler');
+      } else {
+        setIsLoggedIn(false);
+        setUserName('');
+      }
+
+      const storedPlans = localStorage.getItem('tp_plans');
+      setPlans(storedPlans ? (JSON.parse(storedPlans) as Planning[]) : []);
+    };
+
+    refreshFromStorage();
+    window.addEventListener('storage', refreshFromStorage);
+    window.addEventListener('tp-auth-change', refreshFromStorage);
+    return () => {
+      window.removeEventListener('storage', refreshFromStorage);
+      window.removeEventListener('tp-auth-change', refreshFromStorage);
+    };
   }, []);
 
   const greeting = useMemo(
@@ -38,7 +50,7 @@ export default function HomeLanding() {
     <>
       <section className={styles.hero}>
         <div>
-          <p className={styles.badge}>WanderCraft</p>
+          <p className={styles.badge}>TripWise</p>
           <h1>{greeting}</h1>
           <p>
             {isLoggedIn

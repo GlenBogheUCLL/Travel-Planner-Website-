@@ -6,7 +6,7 @@ export default function LoginPage() {
   return (
     <>
       <Head>
-        <title>Log in | Travel Planner</title>
+        <title>Log in | TripWise</title>
         <meta name="description" content="Log in to save your travel plannings" />
       </Head>
       <main className={styles.main}>

@@ -15,13 +15,14 @@ export default function LoginForm() {
       return;
     }
     localStorage.setItem('tp_user', JSON.stringify({ name, email }));
+    window.dispatchEvent(new Event('tp-auth-change'));
     router.push('/');
   };
 
   return (
     <div className={styles.card}>
       <div>
-        <p className={styles.badge}>Travel Planner</p>
+        <p className={styles.badge}>TripWise</p>
         <h1>Log in to continue</h1>
         <p>Save your travel plannings and access them anytime.</p>
       </div>

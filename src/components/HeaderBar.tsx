@@ -18,21 +18,26 @@ export default function HeaderBar() {
 
     readUser();
     window.addEventListener('storage', readUser);
-    return () => window.removeEventListener('storage', readUser);
+    window.addEventListener('tp-auth-change', readUser);
+    return () => {
+      window.removeEventListener('storage', readUser);
+      window.removeEventListener('tp-auth-change', readUser);
+    };
   }, []);
 
   const handleLogout = () => {
     localStorage.removeItem('tp_user');
     setUser(null);
+    window.dispatchEvent(new Event('tp-auth-change'));
   };
 
   return (
     <header className={styles.header}>
       <nav className={styles.nav}>
         <div className={styles.brand}>
-          <span className={styles.logo}>W</span>
+          <span className={styles.logo}>T</span>
           <Link className={styles.title} href="/">
-            WanderCraft
+            TripWise
           </Link>
         </div>
         <div className={styles.actions}>
