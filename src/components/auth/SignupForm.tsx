@@ -1,21 +1,25 @@
 import { useRouter } from 'next/router';
 import { useState, type FormEvent } from 'react';
-import styles from '../styles/Login.module.css';
+import styles from '../../styles/Login.module.css';
 
-export default function LoginForm() {
+export default function SignupForm() {
   const router = useRouter();
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!email.trim() || !password.trim()) {
-      setError('Please enter your email and password.');
+    if (!name.trim() || !email.trim() || !password.trim()) {
+      setError('Please fill in all fields.');
       return;
     }
-    // For demo purposes, we'll just store email
-    localStorage.setItem('tp_user', JSON.stringify({ email }));
+    if (password.length < 6) {
+      setError('Password must be at least 6 characters.');
+      return;
+    }
+    localStorage.setItem('tp_user', JSON.stringify({ name, email }));
     window.dispatchEvent(new Event('tp-auth-change'));
     router.push('/');
   };
@@ -23,10 +27,18 @@ export default function LoginForm() {
   return (
     <div className={styles.card}>
       <div>
-        <h1>Log in to continue</h1>
-        <p>Save your travel plannings and access them anytime.</p>
+        <h1>Create your account</h1>
+        <p>Join us to start planning your next adventure.</p>
       </div>
       <form className={styles.form} onSubmit={handleSubmit}>
+        <label>
+          Name
+          <input
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+            placeholder="Alex Johnson"
+          />
+        </label>
         <label>
           Email
           <input
@@ -42,20 +54,20 @@ export default function LoginForm() {
             type="password"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
-            placeholder="Enter your password"
+            placeholder="Enter at least 6 characters"
           />
         </label>
         {error && <p className={styles.error}>{error}</p>}
-        <button type="submit">Log in</button>
+        <button type="submit">Create Account</button>
       </form>
       <div className={styles.signup}>
-        <p>Don't have an account?</p>
+        <p>Already have an account?</p>
         <button 
           type="button" 
           className={styles.signupButton}
-          onClick={() => router.push('/signup')}
+          onClick={() => router.push('/login')}
         >
-          Create Account
+          Log In
         </button>
       </div>
     </div>

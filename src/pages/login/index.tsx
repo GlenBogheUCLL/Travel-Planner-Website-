@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import LoginForm from '../../components/LoginForm';
+import LoginForm from '../../components/auth/LoginForm';
 import styles from '../../styles/Login.module.css';
 
 export default function LoginPage() {

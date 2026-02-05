@@ -1,6 +1,7 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useEffect, useMemo, useState } from 'react';
-import styles from '../styles/Home.module.css';
+import styles from '../../styles/Home.module.css';
 
 type Planning = {
   id: string;
@@ -11,6 +12,7 @@ type Planning = {
 };
 
 export default function HomeLanding() {
+  const router = useRouter();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState('');
   const [plans, setPlans] = useState<Planning[]>([]);
@@ -45,6 +47,10 @@ export default function HomeLanding() {
     () => (isLoggedIn ? `Welcome back, ${userName}` : 'Plan your next adventure'),
     [isLoggedIn, userName]
   );
+
+  const handleTripClick = (tripId: string) => {
+    router.push(`/trips/${tripId}`);
+  };
 
   return (
     <>
@@ -90,7 +96,18 @@ export default function HomeLanding() {
           ) : (
             <div className={styles.cardGrid}>
               {plans.map((plan) => (
-                <article key={plan.id} className={styles.card}>
+                <article 
+                  key={plan.id} 
+                  className={styles.card}
+                  onClick={() => handleTripClick(plan.id)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      handleTripClick(plan.id);
+                    }
+                  }}
+                >
                   <div>
                     <h3>{plan.title}</h3>
                     {plan.destination && (

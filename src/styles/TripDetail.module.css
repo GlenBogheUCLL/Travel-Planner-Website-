@@ -1,0 +1,118 @@
+.container {
+  min-height: 100vh;
+  background: #f8fafc;
+  padding: 2rem 1.5rem;
+}
+
+.header {
+  max-width: 1000px;
+  margin: 0 auto 3rem;
+  position: relative;
+}
+
+.backButton {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  color: #4c6ef5;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 0.5rem 0;
+  margin-bottom: 1rem;
+  transition: all 0.2s ease;
+}
+
+.backButton:hover {
+  color: #3a52c4;
+  transform: translateX(-2px);
+}
+
+.headerContent {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+}
+
+.headerContent h1 {
+  font-size: 2.5rem;
+  color: #1f2933;
+  margin-bottom: 0.5rem;
+}
+
+.destination {
+  font-size: 1.3rem;
+  color: #4c6ef5;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.dates {
+  color: #52606d;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.duration {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  margin-left: 0.5rem;
+}
+
+.notes {
+  color: #64748b;
+  font-size: 0.95rem;
+  font-style: italic;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e2e8f0;
+  line-height: 1.5;
+}
+
+.menuGrid {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 2rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+  border-color: #4c6ef5;
+}
+
+.cardIcon {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.card h2 {
+  font-size: 1.5rem;
+  color: #1f2933;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.card p {
+  color: #52606d;
+  text-align: center;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import styles from '../styles/Header.module.css';
+import styles from '../../styles/Header.module.css';
 
 type User = {
   name?: string;
@@ -49,9 +49,11 @@ export default function HeaderBar() {
               </button>
             </>
           ) : (
-            <Link className={styles.ghostButton} href="/login">
-              Log in
-            </Link>
+            <>
+              <Link className={styles.ghostButton} href="/login">
+                Log in
+              </Link>
+            </>
           )}
         </div>
       </nav>

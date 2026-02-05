@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import SignupForm from '../../components/SignupForm';
+import SignupForm from '../../components/auth/SignupForm';
 import styles from '../../styles/Login.module.css';
 
 export default function SignupPage() {
