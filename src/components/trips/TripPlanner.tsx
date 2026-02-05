@@ -27,12 +27,20 @@ export default function TripPlanner({ isSessionOnly = false }: TripPlannerProps)
   });
   const [editingId, setEditingId] = useState<string | null>(null);
 
-  // Load trips from localStorage on mount
+  // Load trips from localStorage/sessionStorage on mount
   useEffect(() => {
-    if (typeof window === 'undefined' || isSessionOnly) return;
-    const storedTrips = localStorage.getItem('tp_plans');
-    if (storedTrips) {
-      setTrips(JSON.parse(storedTrips) as Trip[]);
+    if (typeof window === 'undefined') return;
+    
+    if (isSessionOnly) {
+      const storedTrips = sessionStorage.getItem('tp_session_trips');
+      if (storedTrips) {
+        setTrips(JSON.parse(storedTrips) as Trip[]);
+      }
+    } else {
+      const storedTrips = localStorage.getItem('tp_plans');
+      if (storedTrips) {
+        setTrips(JSON.parse(storedTrips) as Trip[]);
+      }
     }
   }, [isSessionOnly]);
 
@@ -52,6 +60,24 @@ export default function TripPlanner({ isSessionOnly = false }: TripPlannerProps)
       return;
     }
 
+    // Validate dates
+    const startDate = new Date(formData.startDate);
+    const endDate = new Date(formData.endDate);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    startDate.setHours(0, 0, 0, 0);
+    endDate.setHours(0, 0, 0, 0);
+
+    if (startDate < today) {
+      alert('Start date cannot be in the past');
+      return;
+    }
+
+    if (endDate < startDate) {
+      alert('End date cannot be before start date');
+      return;
+    }
+
     let newTripId = editingId;
     
     if (editingId) {
@@ -66,6 +92,8 @@ export default function TripPlanner({ isSessionOnly = false }: TripPlannerProps)
       setTrips(updatedTrips);
       if (!isSessionOnly) {
         localStorage.setItem('tp_plans', JSON.stringify(updatedTrips));
+      } else {
+        sessionStorage.setItem('tp_session_trips', JSON.stringify(updatedTrips));
       }
       setEditingId(null);
     } else {
@@ -76,12 +104,17 @@ export default function TripPlanner({ isSessionOnly = false }: TripPlannerProps)
       };
       const updatedTrips = [newTrip, ...trips];
       setTrips(updatedTrips);
+      
       if (!isSessionOnly) {
         localStorage.setItem('tp_plans', JSON.stringify(updatedTrips));
         // Redirect to trip detail page
         router.push(`/trips/${newTripId}`);
-        return;
+      } else {
+        sessionStorage.setItem('tp_session_trips', JSON.stringify(updatedTrips));
+        // Redirect to trip detail page with session flag
+        router.push(`/trips/session/${newTripId}`);
       }
+      return;
     }
 
     setFormData({

@@ -69,6 +69,16 @@
   line-height: 1.5;
 }
 
+.sessionLabel {
+  color: #f59e0b;
+  font-weight: 600;
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  background: #fef3c7;
+  border-radius: 8px;
+  text-align: center;
+}
+
 .menuGrid {
   max-width: 1000px;
   margin: 0 auto;
