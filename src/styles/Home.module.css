@@ -1,22 +1,167 @@
 .main {
   min-height: 100vh;
+  padding: 4rem 1.5rem 6rem;
+  background: #f7f7fb;
+  color: #1f2933;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  text-align: center;
+  gap: 3rem;
 }
 
-.main h1 {
-  font-size: 3.5rem;
+.hero {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  padding: 2.5rem;
+  background: linear-gradient(130deg, #1c3faa, #6a8dff);
+  color: #fff;
+  border-radius: 24px;
+  box-shadow: 0 18px 40px rgba(28, 63, 170, 0.25);
+}
+
+.hero h1 {
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  margin-bottom: 0.75rem;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  max-width: 560px;
+  opacity: 0.95;
+}
+
+.heroActions {
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.secondaryButton {
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  padding: 0.85rem 1.6rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+}
+
+.secondaryButton:hover {
+  transform: translateY(-2px);
+}
+
+.section {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.sectionHeader h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.sectionHeader p {
+  color: #52606d;
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.card h3 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.cardDestination {
+  color: #486581;
+  font-weight: 600;
+}
+
+.cardMeta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #829ab1;
+  font-size: 0.9rem;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 2rem;
+  border: 1px dashed #d9e2ec;
+  border-radius: 18px;
+  color: #52606d;
+  background: #fff;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.2);
+  width: fit-content;
   margin-bottom: 1rem;
 }
 
-.main p {
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
-  opacity: 0.9;
+.primaryButton {
+  border: none;
+  padding: 0.85rem 1.6rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-align: center;
+}
+
+.primaryButton {
+  background: #fbbf24;
+  color: #1f2933;
+  box-shadow: 0 12px 20px rgba(251, 191, 36, 0.3);
+}
+.primaryButton:hover {
+  transform: translateY(-2px);
+}
+
+.primaryButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+  transform: none;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .heroActions {
+    width: 100%;
+  }
 }

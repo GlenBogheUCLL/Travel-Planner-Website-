@@ -1,0 +1,67 @@
+.header {
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.nav {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: #1c3faa;
+  color: #fff;
+  font-weight: 700;
+}
+
+.title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1f2933;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.greeting {
+  color: #52606d;
+  font-weight: 600;
+}
+
+.ghostButton {
+  border: 1px solid #e2e8f0;
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  background: #fff;
+  color: #1f2933;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ghostButton:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 16px rgba(15, 23, 42, 0.12);
+}
