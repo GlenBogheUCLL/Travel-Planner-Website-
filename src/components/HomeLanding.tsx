@@ -50,7 +50,6 @@ export default function HomeLanding() {
     <>
       <section className={styles.hero}>
         <div>
-          <p className={styles.badge}>TripWise</p>
           <h1>{greeting}</h1>
           <p>
             {isLoggedIn

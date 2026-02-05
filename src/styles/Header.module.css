@@ -65,3 +65,20 @@
   transform: translateY(-1px);
   box-shadow: 0 8px 16px rgba(15, 23, 42, 0.12);
 }
+
+.signupButton {
+  border: none;
+  background: #4c6ef5;
+  color: #fff;
+  padding: 0.6rem 1.3rem;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 8px 20px rgba(76, 110, 245, 0.25);
+}
+
+.signupButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(76, 110, 245, 0.35);
+}
